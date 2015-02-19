@@ -1,4 +1,4 @@
-package layout;
+package chris.sullivan.techviews.layouts;
 
 import android.app.AlertDialog;
 import android.content.Context;

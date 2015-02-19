@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <declare-styleable name="LinkTextView">
-        <attr name="alink" format="color"/>
-        <attr name="avisited" format="color"/>
-    </declare-styleable>
-
-</resources>

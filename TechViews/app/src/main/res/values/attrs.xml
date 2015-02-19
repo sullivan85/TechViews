@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="LinkTextView">
+        <attr name="alink" format="color"/>
+        <attr name="avisited" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="RadialSelection">
+        <attr name="rotation_start" format="float"/>
+        <attr name="rotation_end" format="float"/>
+        <attr name="rotation_radius" format="dimension"/>
+        <attr name="center_icon" format="integer"/>
+    </declare-styleable>
+
+</resources>

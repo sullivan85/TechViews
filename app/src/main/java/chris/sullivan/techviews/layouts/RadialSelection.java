@@ -1,4 +1,4 @@
-package layout;
+package chris.sullivan.techviews.layouts;
 
 import android.content.Context;
 import android.content.res.TypedArray;

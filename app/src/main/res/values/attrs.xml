@@ -11,6 +11,7 @@
         <attr name="rotation_end" format="float"/>
         <attr name="rotation_radius" format="dimension"/>
         <attr name="center_icon" format="integer"/>
+        <attr name="animate_selections" format="boolean"/>
     </declare-styleable>
 
 </resources>

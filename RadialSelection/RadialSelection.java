@@ -39,6 +39,8 @@ public class RadialSelection extends RelativeLayout {
         rotate_radius = array.getDimensionPixelSize(R.styleable.RadialSelection_rotation_radius, 100);
 
         center_icon = array.getResourceId(R.styleable.RadialSelection_center_icon, -2);
+
+        array.recycle();
     }
 
     private void placeChildren()

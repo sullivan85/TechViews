@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import chris.sullivan.techviews.R;
 
@@ -22,6 +23,8 @@ public class RadialSelection extends RelativeLayout {
     private int center_icon = -2;
     private boolean animate_selections = false;
     private boolean visible = false;
+
+    private final long TIME = 250L;
 
     private float FLIP = 360;
 
@@ -42,58 +45,6 @@ public class RadialSelection extends RelativeLayout {
         animate_selections = array.getBoolean(R.styleable.RadialSelection_animate_selections, false);
         center_icon = array.getResourceId(R.styleable.RadialSelection_center_icon, -2);
 
-        if(animate_selections) {
-            for (int i = 0; i < getChildCount(); i++)
-            {
-                View child = getChildAt(i);
-                if(child.getId() != center_icon)
-                    child.animate().alpha(0f).setDuration(0).start();
-                else if(child.getId() == center_icon)
-                {
-                    child.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(final View v) {
-                            int count = 0;
-                            if(visible)
-                            {
-                                for(int i = 0; i < getChildCount(); i++)
-                                {
-                                    View child = getChildAt(i);
-                                    if(child != v)
-                                    {
-                                        child.animate()
-                                                .alpha(1f)
-                                                .setStartDelay(count * 1000L)
-                                                .setDuration(1000L)
-                                                .start();
-                                        count++;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                for(int i = getChildCount(); i > -1; i--)
-                                {
-                                    View child = getChildAt(i);
-                                    if(child != v)
-                                    {
-                                        child.animate()
-                                                .alpha(0f)
-                                                .setStartDelay(count * 1000L)
-                                                .setDuration(1000L)
-                                                .start();
-                                        count++;
-                                    }
-                                }
-                            }
-                            visible = !visible;
-                        }
-                    });
-                }
-            }
-            visible = false;
-        }
-
         array.recycle();
     }
 
@@ -105,6 +56,8 @@ public class RadialSelection extends RelativeLayout {
 
     private void placeChildren(int width, int height)
     {
+        if(animate_selections) addAnimationAction();
+
         int count = getChildCount();
         // steps need to take maximum space so ignore one of the count
         // minus 2 if a center icon has been added
@@ -134,10 +87,75 @@ public class RadialSelection extends RelativeLayout {
         child.setY(pos.y - (child.getHeight() / 2));
     }
 
+    private void addAnimationAction()
+    {
+        for (int i = 0; i < getChildCount(); i++)
+        {
+            View child = getChildAt(i);
+            if(child.getId() != center_icon)
+                child.animate().alpha(0f).setDuration(0).start();
+            else if(child.getId() == center_icon)
+            {
+                child.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        // counter to increase delay time for child views
+                        int count = 0;
+
+                        // rotation for the clicked icon
+                        int direction = 45;
+
+                        // child animation speeds
+                        long time = TIME / (getChildCount() > 1 ? getChildCount() - 1 : 1);
+                        if(!visible)
+                        {
+                            for(int i = 0; i < getChildCount(); i++)
+                            {
+                                View child = getChildAt(i);
+                                if(child != v)
+                                {
+                                    child.animate()
+                                            .alpha(1f)
+                                            .setStartDelay(count * time)
+                                            .setDuration(time)
+                                            .start();
+                                    count++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // rotate back to center
+                            direction = 0;
+                            for(int i = getChildCount() - 1; i > -1; i--)
+                            {
+                                View child = getChildAt(i);
+                                if(child != v)
+                                {
+                                    child.animate()
+                                            .alpha(0f)
+                                            .setStartDelay(count * time)
+                                            .setDuration(time)
+                                            .start();
+                                    count++;
+                                }
+                            }
+                        }
+                        visible = !visible;
+
+                        v.animate()
+                                .rotation(direction)
+                                .setDuration(TIME)
+                                .start();
+                    }
+                });
+            }
+        }
+    }
+
     @Override
     protected void dispatchDraw( @NonNull Canvas canvas) {
         placeChildren(canvas.getWidth(), canvas.getHeight());
         super.dispatchDraw(canvas);
     }
 }
-

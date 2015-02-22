@@ -14,4 +14,8 @@
         <attr name="animate_selections" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="HeaderListView">
+        <attr name="header_layout" format="reference"/>
+    </declare-styleable>
+
 </resources>

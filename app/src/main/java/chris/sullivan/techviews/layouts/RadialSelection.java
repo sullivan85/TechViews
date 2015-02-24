@@ -37,13 +37,13 @@ public class RadialSelection extends RelativeLayout {
 
     private void loadAttributeSet(AttributeSet attrs)
     {
-        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.RadialSelection);
+        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.TechViews);
 
-        rotate_start = FLIP - array.getFloat(R.styleable.RadialSelection_rotation_start, 135);
-        rotate_end = FLIP - array.getFloat(R.styleable.RadialSelection_rotation_end, 45);
-        rotate_radius = array.getDimensionPixelSize(R.styleable.RadialSelection_rotation_radius, 100);
-        animate_selections = array.getBoolean(R.styleable.RadialSelection_animate_selections, false);
-        center_icon = array.getResourceId(R.styleable.RadialSelection_center_icon, -2);
+        rotate_start = FLIP - array.getFloat(R.styleable.TechViews_rotation_start, 135);
+        rotate_end = FLIP - array.getFloat(R.styleable.TechViews_rotation_end, 45);
+        rotate_radius = array.getDimensionPixelSize(R.styleable.TechViews_rotation_radius, 100);
+        animate_selections = array.getBoolean(R.styleable.TechViews_animate_selections, false);
+        center_icon = array.getResourceId(R.styleable.TechViews_center_icon, -2);
 
         array.recycle();
     }

@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="LinkTextView">
+    <declare-styleable name="TechViews">
         <attr name="alink" format="color"/>
         <attr name="avisited" format="color"/>
-    </declare-styleable>
-
-    <declare-styleable name="RadialSelection">
         <attr name="rotation_start" format="float"/>
         <attr name="rotation_end" format="float"/>
         <attr name="rotation_radius" format="dimension"/>
         <attr name="center_icon" format="integer"/>
         <attr name="animate_selections" format="boolean"/>
-    </declare-styleable>
-
-    <declare-styleable name="HeaderListView">
         <attr name="header_layout" format="reference"/>
+        <attr name="max" format="integer"/>
+        <attr name="min" format="integer"/>
+        <attr name="stroke_width" format="integer"/>
+        <attr name="radius" format="integer"/>
     </declare-styleable>
 
 </resources>

@@ -85,10 +85,10 @@ public class LinkTextView extends TextView {
 
     private void loadAttributeSet(AttributeSet attrs)
     {
-        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.LinkTextView);
+        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.TechViews);
 
-        base_color = array.getColor(R.styleable.LinkTextView_alink, Color.BLUE);
-        visited_color = array.getColor(R.styleable.LinkTextView_avisited, Color.parseColor("#800080"));
+        base_color = array.getColor(R.styleable.TechViews_alink, Color.BLUE);
+        visited_color = array.getColor(R.styleable.TechViews_avisited, Color.parseColor("#800080"));
 
         array.recycle();
     }

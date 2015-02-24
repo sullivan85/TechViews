@@ -4,15 +4,21 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import chris.sullivan.techviews.R;
 
@@ -44,9 +50,8 @@ public class HeaderListView extends LinearLayout {
 
     private void loadAttributes(AttributeSet attrs)
     {
-        TypedArray arr = getContext().obtainStyledAttributes(attrs, R.styleable.HeaderListView);
-
-        setHeader(arr.getResourceId(R.styleable.HeaderListView_header_layout, -1));
+        TypedArray arr = getContext().obtainStyledAttributes(attrs, R.styleable.TechViews);
+        setHeader(arr.getResourceId(R.styleable.TechViews_header_layout, -1));
         arr.recycle();
     }
 
@@ -180,7 +185,7 @@ public class HeaderListView extends LinearLayout {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     // consume touch on header
-                    if(event.getRawY() < header.getMeasuredHeight()
+                    if(event.getY() < header.getHeight()
                             && listen != null)
                     {
                         listen.onHeaderClicked( HeaderListView.this );
